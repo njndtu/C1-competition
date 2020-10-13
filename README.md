@@ -1,2 +1,15 @@
 # C1-competition
-2020 UIUC vs Michigan, algo submission
+2020 UIUC vs Michigan, algo submission.
+
+Entire coded needed to run locally can be found at https://github.com/correlation-one/C1GamesStarterKit. Code here only contains files modified for my submission.
+
+# Strategy
+
+The strategy utilizes a strategy found in a previous tournament stream. In which the goal is to essentially funnel enemy units into attacking from the two sides. My strategy adopts this idea and reinforces the two corners on my side of the map with walls and turrets close to that region. The middle part of my map consists of a V shaped wall and turret defense formation. My factories are situated in the back. There is a specific starting formation but after round 2 or so, things become more randomized. The general strategy is to first repair previously damaged or destroyed structures. Then spend remaining amount of structure points on building factories (up to a certain amount), then the rest is spent on bettering defenses, aka adding more walls and turrets. The random parts come in on where to add in the new defenses, and this is done by first dividing my game map into 6 regions. Those regions that have been attacked previously will be chosen to have new structures. The specific structures added are chosen in a specific manner. 
+
+tower_defense.py contains information about the "regions" in my strategy. algo_strategy sends commands to class in tower_defense.py. These commands essentially propagate downward. Since of the 6 regions contain really 3 unique regions, as everything is mirrored representation wise. 
+
+# To improve on
+
+Due to lack of time and bad planning and skills much more improvement can be done. As a result, my algo did not advance far :( . However, there is no doubt this strategy could have been better had more things been add. First no true attack logic was added. In many of the replays, I simply did not attack right. My current usage of MP was spawn interceptors in the same spot or spawn scouts in the same spot, not very smart. Second, bugs. There seems to be a bug with the factory spawning. As stated above, factories are taken priority after repairs of current structures. This is emphasized such that if there is not enough resources for a factory, resource are saved such that assuming no reapair costs next round a factory can be spawned (or upgraded) next round. However from watching replays, this does not seem to occur consistently despite a specifc part in code that dictates this to happen. Third, and perhaps in my opinion the most important or as important as having a smart attack strategy is the miss logic once everything is built. The final "form" that my strategy takes is when all factory spots contain upgraded factories and all walls and turrets have been built. Upon arriving at this state, it is not yet implemented what to do with the influx of new resources. Of crucial important is utilizing these resources to build walls for example to coordinate attack. In particular, in my strategy, my "V" shaped defense contains holes for allowing interceptors to pass through and provide defense. Upon reaching the final form, these holes should be plugged to allow a concentrated attack on one of the funnel by my forces. 
+
